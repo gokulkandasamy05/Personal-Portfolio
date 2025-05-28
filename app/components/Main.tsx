@@ -5,10 +5,10 @@ import TextAnimation from "./TextAnimation";
 import { FaLinkedin } from "react-icons/fa6";
 import { SiGmail } from "react-icons/si";
 import { useEffect, useRef, useState } from "react";
-import { FaReact, FaHtml5, FaCss3Alt } from "react-icons/fa";
+import { FaReact, FaHtml5, FaCss3Alt, FaExternalLinkAlt } from "react-icons/fa";
 import { IoLogoJavascript } from "react-icons/io";
-import { desc } from "framer-motion/client";
 import TransitionOptions from "./TransitionAnimation";
+import { EducationArray, ExperienceArray, PrjectsArray } from "./utils/common";
 
 interface refArrayTypes {
     ref_name: React.RefObject<HTMLElement | null>;
@@ -17,46 +17,6 @@ interface refArrayTypes {
     id?: string;
 }
 
-
-const ExperienceArray = [
-    {
-        company: 'Constient Global Solutions',
-        position: 'Junior Software Engineer',
-        duration: 'May 2022 - Present',
-        description: 'Developed & optimized React.js applications, increasing user engagement by 15%. Led UI performance enhancements, reducing load time by 25% and improving accessibility. Troubleshot and resolved high-priority production issues, improving system efficiency by 30% under strict deadlines, Designed & implemented Redux state management, ensuring scalable & responsive applications. Integrated & secured APIs, working with backend teams for seamless data flow. Reviewed code & mentored junior developers, ensuring best coding practices and clean architecture.',
-        skills: ['React.js', 'JavaScript (ES6+)', 'Next.js', 'TypeScript', 'HTML', 'CSS', 'Tailwind CSS', 'Material-UI', 'Bootstrap', 'Reactstrap', 'Redux', 'Git']
-    }
-]
-
-const EducationArray = [
-    {
-        institution: 'Kongu Engineering College',
-        degree: 'Bachelor of Engineering in Mechatronics',
-        duration: '2017 - 2021'
-    }
-]
-
-const PrjectsArray = [
-    {
-        company: 'Constient Global Solutions',
-        project_title: 'Axis CS',
-        projects: [
-            {
-                title: 'Axis Customer Connect (Customer Application) – Integrated into Simplehai',
-                description: 'Used by 5000+ customers for seamless stock market transactions. Developed & maintained a customer-facing web application with key features like Account Closure,KYC, IPO, DDPI, etc. Optimized UI performance, reducing load time by 25% and enhancing accessibility. Integrated secure APIs for real-time stock market data and customer account updates.',
-            },
-            {
-                title: 'Axis CS Connect (Backoffice – Employee Application)',
-                description: 'Built & optimized an internal back-office system used by 5,000+ Axis Bank employees. Developed an internal system for better efficiency & security. Optimized performance and debugging, increasing efficiency by 30%.',
-            },
-            {
-                title: 'Document Processing Application (Built from Scratch)',
-                description: 'Developed a document processing system from scratch, reducing manual efforts by 40%. Implemented role-based access controls (RBAC) for secure data management & compliance.',
-            }
-        ]
-    }
-
-]
 
 
 const Main = () => {
@@ -87,12 +47,13 @@ const Main = () => {
         ref.current?.scrollIntoView({ behavior: 'smooth' })
     }
 
-    console.log(refArray)
+
+
 
     return (
         <div className="flex flex-col w-full h-screen md:flex-row">
             <TextAnimation animationElements="h1, p">
-                <div className='w-full px-6 py-10 md:px-20 md:py-20 flex flex-col md:gap-y-2 md:justify-between md:h-full h-auto'>
+                <div className='w-full px-6 py-10 md:px-20 md:py-20 flex flex-col md:gap-y-2 md:justify-start md:h-full h-auto'>
 
                     <div className='flex flex-col gap-y-2 text-justify'>
                         <h1 className='text-5xl text-[#ffffff] font-bold'>Gokul Kandasamy</h1>
@@ -115,35 +76,51 @@ const Main = () => {
                                 <FaCss3Alt className="text-[#264de4] text-4xl" />
                             </EnterAnimation>
                         </div>
+                        <div className="my-3 flex w-full gap-4 items-center">
+                            <EnterAnimation duration={0.8}>
+                                <Link href="/Gokul K - Resume.pdf" target='_blank' rel="noopener noreferrer" className="text-white">
+                                    <div className="flex items-center gap-3 bg-[#132e46] text-[#5eead4] px-3 py-1 rounded-full text-sm w-fit">
+                                        <span>View Resume</span>
+                                        <FaExternalLinkAlt />
+                                    </div>
+                                </Link>
+                            </EnterAnimation>
+
+                            <div className="flex justify-start items-center gap-3 md:mt-0">
+                                <EnterAnimation duration={0.8}>
+                                    <Link target="_blank" href="https://www.linkedin.com/in/gokul-kandasamyy/">
+                                        <FaLinkedin className="text-2xl text-[#94a3b8] hover:text-[#fff] cursor-pointer" />
+                                    </Link>
+                                </EnterAnimation>
+                                <EnterAnimation duration={0.8}>
+                                    <Link target="_blank" href="mailto:gokulkandasamyy@gmail.com">
+                                        <SiGmail className="text-2xl text-[#94a3b8] hover:text-[#fff] cursor-pointer" />
+                                    </Link>
+                                </EnterAnimation>
+                            </div>
+                        </div>
+
                     </div>
 
 
 
 
-                    <div className="md:block hidden">
+                    <div className="md:block hidden md:mt-16">
                         <nav className="flex md:flex-col gap-3">
                             {refArray.map((item, index) => (
                                 <div key={item?.name} onClick={() => scrollToSection(item?.ref_name)} className={`flex items-center gap-4 group cursor-pointer ${item?.is_active ? 'text-white' : 'text-[#94a3b8]'}`}>
-                                    <div className={`h-[2px] w-7 m-0 transition-all duration-300 origin-left ${item?.is_active ? 'bg-white w-20' : 'bg-[#94a3b8] group-hover:w-20 group-hover:bg-white'}`} />
-                                    <Link href="" className="transition-colors duration-300 group-hover:text-white font-semibold !text-lg">{item?.name}</Link>
+                                    <div className={`h-[2px] w-7 m-0 transition-all duration-300 origin-left ${item?.is_active ? 'bg-white w-32' : 'bg-[#94a3b8] group-hover:w-32 group-hover:bg-white'}`} />
+                                    <EnterAnimation duration={0.4 * (index + 1)}>
+                                        <Link href="" className="transition-colors duration-300 group-hover:text-white font-semibold !text-lg">{item?.name}</Link>
+                                    </EnterAnimation>
+
                                 </div>
                             ))}
                         </nav>
                     </div>
 
 
-                    <div className="flex justify-start gap-3 mt-5 md:mt-0">
-                        <EnterAnimation duration={0.4}>
-                            <Link target="_blank" href="https://www.linkedin.com/in/gokul-kandasamyy/">
-                                <FaLinkedin className="text-2xl text-[#94a3b8] hover:text-[#fff] cursor-pointer" />
-                            </Link>
-                        </EnterAnimation>
-                        <EnterAnimation duration={0.8}>
-                            <Link target="_blank" href="mailto:gokulkandasamyy@gmail.com">
-                                <SiGmail className="text-2xl text-[#94a3b8] hover:text-[#fff] cursor-pointer" />
-                            </Link>
-                        </EnterAnimation>
-                    </div>
+
 
                 </div>
             </TextAnimation>
@@ -200,7 +177,7 @@ const Main = () => {
                                     <div className="mt-5">
                                         {
                                             item.skills.map((skill, index) => {
-                                                return <span key={index} className="inline-block bg-[#132e46] text-[#5eead4] px-3 py-1 rounded-full text-sm mr-2 mb-5">{skill}</span>
+                                                return <div key={index} className="inline-block bg-[#132e46] text-[#5eead4] px-3 py-1 rounded-full text-sm mr-2 mb-5">{skill}</div>
                                             })
                                         }
                                     </div>
