@@ -37,13 +37,3 @@ export const PrjectsArray = [
     }
 
 ]
-
-
-export const downloadFile = (fileName: string, content: string) => {
-        // let link = document.createElement('a');
-
-        // link.setAttribute('download', file_name);
-        // document.body.appendChild(link);
-        // link.click();
-        // document.body.removeChild(link);
-}
